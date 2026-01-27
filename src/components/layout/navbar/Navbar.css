@@ -396,3 +396,33 @@
 .nav-link.active::after {
   width: 100%;
 }
+/* Desktop dropdown */
+@media (min-width: 992px) {
+  .nav-item.dropdown .dropdown-menu {
+    background: #004e5c; /* solid color for visibility */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: all 0.3s ease;
+  }
+
+  .nav-item.dropdown:hover .dropdown-menu,
+  .nav-item.dropdown.show .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0px);
+  }
+}
+
+/* Mobile dropdown stays semi-transparent */
+@media (max-width: 991.98px) {
+  .navbar-collapse .dropdown-menu {
+    position: static !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    background: rgba(255,255,255,0.08);
+    box-shadow: none;
+    margin-left: 0 !important;
+  }
+}
