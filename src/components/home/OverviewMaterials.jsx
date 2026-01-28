@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { createClient } from "@sanity/client";
 import { materialImages } from "../../assets/images";
 import { sanityClient } from "../../utils/sanityClient";
 
@@ -13,30 +12,24 @@ const imageFallback = {
   staffa: materialImages.staffa,
 };
 
-// Sanity client (frontend safe)
-const sanity = createClient({
-  projectId: "2a7y85sr",
-  dataset: "production",
-  apiVersion: "2024-01-01",
-  useCdn: true,
-});
 
 const MaterialsOverview = () => {
   const [materials, setMaterials] = useState([]);
 
   useEffect(() => {
-    sanity
-      .fetch(`
-        *[_type == "material" && active == true] | order(name asc) {
-          name,
-          description,
-          "slug": slug.current,
-          "imageUrl": image.asset->url
-        }
-      `)
-      .then(setMaterials)
-      .catch(console.error);
-  }, []);
+  sanityClient
+    .fetch(`
+      *[_type == "material" && active == true] | order(name asc) {
+        name,
+        description,
+        "slug": slug.current,
+        "imageUrl": image.asset->url
+      }
+    `)
+    .then(setMaterials)
+    .catch(console.error);
+}, []);
+
 
   return (
     <>
