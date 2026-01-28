@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { createClient } from "@sanity/client";
 import { materialImages } from "../../assets/images";
+import { sanityClient } from "../../utils/sanityClient";
+
 
 // Sanity → React image fallback map
 const imageFallback = {
