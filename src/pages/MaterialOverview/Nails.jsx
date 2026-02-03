@@ -9,274 +9,340 @@ const Nails = () => {
   return (
     <>
       <style>{`
-        :root {
-          --primary: #0F5C5C;
-          --accent: #F28C28;
-          --accent-light: #f5a95b;
-          --text: #2b2b2b;
-          --gray: #555;
-          --light-bg: #f5f7f8;
-        }
+  :root {
+    --primary: #0F5C5C;
+    --accent: #F28C28;
+    --accent-light: #f5a95b;
+    --text: #2b2b2b;
+    --gray: #555;
+    --light-bg: #f5f7f8;
+  }
 
-        .nails-page {
-          padding: 0 0 4rem; /* Reduced bottom padding */
-          background: var(--light-bg);
-          overflow-x: hidden;
-        }
+  .nails-page {
+    padding: 0 0 4rem;
+    background: var(--light-bg);
+    overflow-x: hidden;
+  }
 
-        .container {
-          max-width: 1300px;
-          margin: 0 auto;
-          padding: 0 2rem;
-        }
+  .container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 1.2rem;
+  }
+/* ─── HERO ─── Full bleed + mobile safe */
+.nails-hero {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100vh;                    /* flexible starting point */
+  min-height: 520px;               /* increased minimum height to fit text better */
+  max-height: 780px;
+  margin-bottom: 3.5rem;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
 
-        /* Full-Bleed Hero */
-        .nails-hero {
-          width: 100vw;
-          position: relative;
-          left: 50%;
-          right: 50%;
-          margin-left: -50vw;
-          margin-right: -50vw;
-          height: 700px;
-          margin-bottom: 4rem; /* Reduced from 6rem */
-          overflow: hidden;
-          box-shadow: 0 30px 80px rgba(0,0,0,.3);
-        }
+.nails-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  animation: heroZoom 6s ease-out forwards;
+}
 
-        .nails-hero img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center;
-          animation: heroZoom 5s ease-out forwards;
-        }
+/* Overlay - more flexible padding + better mobile handling */
+.hero-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5rem 2rem 4rem;         /* increased bottom padding for safety */
+  background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);
+  color: white;
+  text-align: center;
+}
 
-        @keyframes heroZoom {
-          0% { transform: scale(1.1); }
-          100% { transform: scale(1); }
-        }
+/* Text scaling with clamp for safety */
+.hero-title {
+  font-size: clamp(2.4rem, 7.5vw, 4.2rem);
+  font-weight: 900;
+  margin-bottom: 1rem;
+  line-height: 1.05;
+  margin-top:3rem;
+}
 
-        .hero-overlay {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          padding: 6rem 4rem 4rem;
-          background: linear-gradient(transparent, rgba(0,0,0,0.9));
-          color: white;
-          text-align: center;
-        }
+.hero-subtitle {
+  font-size: clamp(1rem, 3.8vw, 1.35rem);
+  max-width: 880px;
+  margin: 0 auto 2rem;
+  opacity: 0.94;
+  line-height: 1.55;
+}
 
-        .hero-title {
-          font-size: 4.5rem;
-          font-weight: 900;
-          margin-bottom: 1.5rem;
-          line-height: 1.1;
-        }
+/* ─── RESPONSIVE FIXES ─── */
+@media (max-width: 768px) {
+  .nails-hero {
+    height: 70vh;
+    min-height: 480px;             /* ensure enough space for text */
+    margin-bottom: 2.5rem;
+  }
 
-        .hero-subtitle {
-          font-size: 1.5rem;
-          max-width: 900px;
-          margin: 0 auto 3rem;
-          opacity: 0.95;
-          line-height: 1.8;
-        }
+  .hero-overlay {
+    padding: 4rem 1.5rem 3.5rem;   /* more bottom space on mobile */
+  }
 
-        .cta-btn {
-          padding: 1.5rem 4.5rem;
-          font-size: 1.3rem;
-          font-weight: 800;
-          border-radius: 60px;
-          background: linear-gradient(135deg, var(--accent), var(--accent-light));
-          color: white;
-          text-decoration: none;
-          box-shadow: 0 20px 60px rgba(242,140,40,0.45);
-          transition: all 0.4s ease;
-        }
+  .hero-title {
+    margin-bottom: 0.8rem;
+  }
 
-        .cta-btn:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 30px 80px rgba(242,140,40,0.6);
-        }
+  .hero-subtitle {
+    margin-bottom: 1.8rem;
+  }
 
-        /* Sections - Reduced vertical spacing */
-        .section {
-          padding: 4rem 0; /* Reduced from 8rem */
-          text-align: center;
-        }
+  .cta-btn {
+    padding: 0.95rem 2.6rem;
+    font-size: 1.05rem;
+  }
+}
 
-        .section-title {
-          font-size: 3.2rem;
-          font-weight: 900;
-          color: var(--primary);
-          margin-bottom: 2rem; /* Reduced from 3rem */
-          position: relative;
-          display: inline-block;
-        }
+@media (max-width: 480px) {
+  .nails-hero {
+    height: 65vh;
+    min-height: 440px;             /* still enough height for Amharic + English text */
+  }
 
-        .section-title::after {
-          content: '';
-          position: absolute;
-          bottom: -14px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 100px;
-          height: 6px;
-          background: linear-gradient(135deg, var(--accent), var(--accent-light));
-          border-radius: 4px;
-        }
+  .hero-overlay {
+    padding: 3.5rem 1.2rem 3rem;   /* balanced for very small screens */
+  }
 
-        /* Overview Card */
-        .overview-card {
-          background: white;
-          max-width: 1100px;
-          margin: 0 auto; /* Removed extra top/bottom margin */
-          padding: 4rem; /* Slightly reduced padding */
-          border-radius: 36px;
-          box-shadow: 0 30px 100px rgba(0,0,0,0.12);
-          position: relative;
-        }
+  .hero-title {
+    font-size: clamp(2rem, 8vw, 2.6rem);
+  }
 
-        .overview-card::before {
-          content: '';
-          position: absolute;
-          top: 0; left: 0; right: 0;
-          height: 6px;
-          background: linear-gradient(135deg, var(--accent), var(--accent-light));
-        }
+  .hero-subtitle {
+    font-size: clamp(0.95rem, 4vw, 1.1rem);
+  }
+}
 
-        .overview-desc {
-          font-size: 1.35rem;
-          line-height: 2;
-          color: var(--gray);
-          margin-bottom: 2rem; /* Reduced */
-          max-width: 900px;
-          margin-left: auto;
-          margin-right: auto;
-        }
+  .cta-btn {
+    display: inline-block;
+    padding: 1.1rem 3rem;
+    font-size: 1.15rem;
+    font-weight: 800;
+    border-radius: 60px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 12px 40px rgba(242,140,40,0.4);
+    transition: all 0.35s ease;
+  }
 
-        .features-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 2rem;
-        }
+  .cta-btn:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(242,140,40,0.55);
+  }
 
-        .feature-item {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 1rem;
-          font-size: 1.25rem;
-          color: var(--text);
-        }
+  /* ─── SECTIONS ─── */
+  .section {
+    padding: 3.5rem 0;
+    text-align: center;
+  }
 
-        .feature-icon {
-          font-size: 2.2rem;
-          color: var(--accent);
-        }
+  .section-title {
+    font-size: clamp(2.2rem, 6vw, 3rem);
+    font-weight: 900;
+    color: var(--primary);
+    margin-bottom: 1.8rem;
+    position: relative;
+    display: inline-block;
+  }
 
-        /* Applications - Premium Card Grid */
-        .applications-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-          gap: 2.5rem; /* Reduced from 3.5rem */
-          max-width: 1400px;
-          margin: 2rem auto 0; /* Reduced top margin */
-          padding: 0 2rem;
-        }
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 5px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    border-radius: 4px;
+  }
 
-        .app-card {
-          background: white;
-          border-radius: 36px;
-          overflow: hidden;
-          box-shadow: 0 25px 70px rgba(0,0,0,0.15);
-          transition: all 0.45s ease;
-        }
+  /* Overview Card */
+  .overview-card {
+    background: white;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: clamp(2.5rem, 5vw, 3.5rem) clamp(1.5rem, 4vw, 3rem);
+    border-radius: 32px;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.1);
+  }
 
-        .app-card:hover {
-          transform: translateY(-18px);
-          box-shadow: 0 45px 100px rgba(0,0,0,0.25);
-        }
+  .overview-desc {
+    font-size: clamp(1.15rem, 3.5vw, 1.3rem);
+    line-height: 1.9;
+    color: var(--gray);
+    margin-bottom: 2rem;
+    max-width: 880px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-        .app-card img {
-          width: 100%;
-          height: 320px;
-          object-fit: cover;
-          object-position: center;
-          transition: transform 0.6s ease;
-        }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.8rem;
+  }
 
-        .app-card:hover img {
-          transform: scale(1.08);
-        }
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: clamp(1.05rem, 3vw, 1.2rem);
+    color: var(--text);
+  }
 
-        .app-card-content {
-          padding: 2.8rem;
-          text-align: left;
-        }
+  .feature-icon {
+    font-size: 2rem;
+    color: var(--accent);
+  }
 
-        .app-card-content h3 {
-          font-size: 2.1rem;
-          font-weight: 900;
-          color: var(--primary);
-          margin-bottom: 1rem;
-        }
+  /* Applications Grid */
+  .applications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.2rem;
+    margin: 2rem auto 0;
+  }
 
-        .app-card-content p {
-          font-size: 1.2rem;
-          color: var(--gray);
-          line-height: 1.8;
-        }
+  .app-card {
+    background: white;
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    transition: all 0.4s ease;
+  }
 
-        /* Final CTA - Reduced spacing */
-        .final-cta {
-          background: linear-gradient(135deg, var(--primary), #0b4646);
-          padding: 6rem 4rem; /* Reduced from 8rem */
-          text-align: center;
-          color: white;
-          border-radius: 48px;
-          max-width: 1300px;
-          margin: 4rem auto 0; /* Removed bottom margin, page bottom padding handles it */
-          box-shadow: 0 40px 120px rgba(15,92,92,0.5);
-        }
+  .app-card:hover {
+    transform: translateY(-14px);
+    box-shadow: 0 35px 80px rgba(0,0,0,0.2);
+  }
 
-        .final-cta h2 {
-          font-size: 4rem;
-          font-weight: 900;
-          margin-bottom: 1.5rem;
-        }
+  .app-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    transition: transform 0.55s ease;
+  }
 
-        .final-cta p {
-          font-size: 1.5rem;
-          max-width: 900px;
-          margin: 0 auto 2.5rem;
-          opacity: 0.95;
-          line-height: 1.9;
-        }
+  .app-card:hover img {
+    transform: scale(1.06);
+  }
 
-        /* Responsive */
-        @media (max-width: 1024px) {
-          .nails-hero { height: 600px; margin-bottom: 3rem; }
-          .hero-title { font-size: 3.8rem; }
-          .section { padding: 3.5rem 0; }
-          .app-card img { height: 280px; }
-        }
+  .app-card-content {
+    padding: 2.2rem;
+    text-align: left;
+  }
 
-        @media (max-width: 768px) {
-          .nails-hero { height: 500px; margin-bottom: 2.5rem; }
-          .hero-title { font-size: 3rem; }
-          .hero-overlay { padding: 4rem 2rem; }
-          .section { padding: 3rem 0; }
-          .section-title { font-size: 2.6rem; }
-          .overview-card { padding: 3rem 2rem; }
-          .applications-grid { gap: 2.5rem; }
-          .app-card-content { padding: 2.2rem; }
-          .final-cta { padding: 4.5rem 2rem; margin-top: 3rem; }
-          .final-cta h2 { font-size: 2.8rem; }
-        }
-      `}</style>
+  .app-card-content h3 {
+    font-size: 1.9rem;
+    font-weight: 900;
+    color: var(--primary);
+    margin-bottom: 0.9rem;
+  }
 
+  .app-card-content p {
+    font-size: 1.1rem;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+
+  /* Final CTA */
+  .final-cta {
+    background: linear-gradient(135deg, var(--primary), #0b4646);
+    padding: clamp(3rem, 8vw, 5rem) clamp(1.5rem, 5vw, 3rem);
+    margin: 3.5rem 1rem 0;
+    text-align: center;
+    color: white;
+    border-radius: 40px;
+    box-shadow: 0 30px 90px rgba(15,92,92,0.4);
+  }
+
+  .final-cta h2 {
+    font-size: clamp(2.4rem, 7vw, 3.5rem);
+    font-weight: 900;
+    margin-bottom: 1.3rem;
+  }
+
+  .final-cta p {
+    font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+    max-width: 800px;
+    margin: 0 auto 2.2rem;
+    opacity: 0.94;
+    line-height: 1.7;
+  }
+
+  /* ─── RESPONSIVE FIXES ─── */
+  @media (max-width: 1024px) {
+    .nails-hero { height: 70vh; min-height: 500px; }
+    .hero-overlay { padding: 4.5rem 2.5rem 3rem; }
+  }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 1rem; }
+
+    .nails-hero {
+      height: 65vh;
+      min-height: 420px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-overlay { padding: 3.5rem 1.5rem 2.5rem; }
+
+    .cta-btn {
+      padding: 0.95rem 2.6rem;
+      font-size: 1.05rem;
+    }
+
+    .overview-desc { font-size: 1.15rem; }
+
+    .applications-grid {
+      gap: 2rem;
+      margin: 1.5rem auto 0;
+    }
+
+    .app-card img { height: 240px; }
+
+    .final-cta {
+      margin: 2.5rem 0.8rem 0;
+      padding: 3.5rem 1.8rem;
+      border-radius: 32px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .nails-hero { height: 60vh; min-height: 380px; }
+
+    .hero-title { font-size: 2.6rem; }
+    .hero-subtitle { font-size: 1.15rem; }
+
+    .cta-btn {
+      padding: 0.9rem 2.2rem;
+      font-size: 1rem;
+    }
+
+    .section { padding: 2.5rem 0; }
+
+    .overview-card { padding: 2.2rem 1.5rem; }
+
+    .app-card-content { padding: 1.8rem; }
+    .app-card-content h3 { font-size: 1.7rem; }
+
+    .final-cta { padding: 3rem 1.5rem; }
+  }
+`}</style>
       <section className="nails-page">
         <div className="container">
 
@@ -286,8 +352,7 @@ const Nails = () => {
             <div className="hero-overlay">
               <h1 className="hero-title">ጥራታቸውን የጠበቁ ሚስማሮች</h1>
               <p className="hero-subtitle">
-                Durable, high-grip nails engineered for maximum holding power and reliability 
-                in wood framing, concrete formwork, roofing, and general construction projects.
+                High-grip nails built for strength, reliability, and everyday construction.
               </p>
               <Link to="/request-quote" className="cta-btn">
                 Request Quote Now
@@ -318,10 +383,7 @@ const Nails = () => {
                   <span className="feature-icon">✓</span>
                   <span>Smooth, ring, or screw shank options for maximum grip</span>
                 </div>
-                <div className="feature-item">
-                  <span className="feature-icon">✓</span>
-                  <span>Bulk packaging with competitive pricing for large projects</span>
-                </div>
+                
               </div>
             </div>
           </div>

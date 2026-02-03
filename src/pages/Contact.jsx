@@ -131,6 +131,7 @@ const Contact = () => {
           .contact-hero {
             grid-template-columns: 1fr;
             text-align: center;
+            margin-top: 2rem;
           }
 
           .contact-actions {

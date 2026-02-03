@@ -44,223 +44,348 @@ const Rebar = () => {
 
   return (
     <>
-      <style>{`
-        :root {
-          --primary: #004e5c;
-          --accent: #ff8c00;
-          --accent-light: #ffb000;
-          --light-bg: #f5f7f8;
-        }
+     <style>{`
+  :root {
+    --primary: #004e5c;
+    --accent: #ff8c00;
+    --accent-light: #ffb000;
+    --light-bg: #f5f7f8;
+  }
 
-        .rebar-page {
-          background: var(--light-bg);
-          overflow-x: hidden;
-          padding-bottom: 5rem;
-        }
+  .rebar-page {
+    background: var(--light-bg);
+    overflow-x: hidden;
+    padding-bottom: 4rem;
+  }
 
-        .rebar-container {
-          max-width: 1270px;
-          margin: auto;
-          padding: 0 1.5rem;
-        }
-
-        /* HERO */
-      .rebar-hero {
-  width: 100vw;                    /* Full viewport width */
+  .rebar-container {
+    max-width: 1270px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+.rebar-hero {
   position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  height: 600px;                   /* Or whatever height you want */
-  margin-bottom: 5rem;
+  width: 110vw;                    
+  height: 100vh;                    
+  min-height: 420px;
+  max-height: 720px;
+  margin-left: calc(-44vw + 50%); 
+  margin-right: calc(-50vw + 50%);
+  margin-bottom: 3.5rem;
   overflow: hidden;
-  border-radius: 0;                /* Remove if you want rounded corners on full-bleed */
-  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+  left: 50%;
+  transform: translateX(-50%);    
 }
 
 .rebar-hero img {
   width: 100%;
   height: 100%;
-  object-fit: cover;              
-  object-position: center;         /* Centers the focal point */
+  object-fit: cover;
+  object-position: center;
   display: block;
 }
-        .hero-overlay {
-          position: absolute;
-          inset: auto 0 0;
-          padding: 4rem 3rem;
-          background: linear-gradient(transparent, rgba(0,0,0,.85));
-          color: white;
-        }
 
-        .cta-btn {
-          display: inline-block;
-          padding: 1.3rem 3.8rem;
-          border-radius: 50px;
-          background: linear-gradient(135deg, var(--accent), var(--accent-light));
-          color: white;
-          font-weight: 800;
-          text-decoration: none;
-          box-shadow: 0 15px 45px rgba(255,140,0,.5);
-        }
+/* Overlay stays contained within viewport edges */
+.hero-overlay {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 3rem 1.5rem 2.5rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.45) 60%, transparent 100%);
+  color: white;
+  text-align: center;
+}
 
-        /* SECTION */
-        .section {
-          margin-bottom: 7rem;
-          text-align: center;
-        }
+/* Mobile adjustments – keep full bleed, but adjust height & padding */
+@media (max-width: 768px) {
+  .rebar-hero {
+    height: 65vh;
+    min-height: 380px;
+    margin-bottom: 3rem;
+  }
 
-        .section h2 {
-          font-size: 2.8rem;
-          font-weight: 900;
-          color: var(--primary);
-          margin-bottom: 2.5rem;
-        }
+  .hero-overlay {
+    padding: 2.5rem 1.2rem 2rem;
+  }
 
-        /* TABLE */
-        table {
-          width: 100%;
-          max-width: 1050px;
-          margin: auto;
-          border-collapse: collapse;
-          background: white;
-          box-shadow: 0 15px 50px rgba(0,0,0,.12);
-        }
+  .cta-btn {
+    padding: 0.9rem 2.2rem;
+    font-size: 1rem;
+  }
+}
 
-        th, td {
-          padding: 1.5rem;
-          font-size: 1.1rem;
-        }
+@media (max-width: 480px) {
+  .rebar-hero {
+    height: 60vh;
+    min-height: 340px;
+  }
 
-        th {
-          background: var(--primary);
-          color: white;
-        }
+  .hero-overlay {
+    padding: 2rem 1rem 1.8rem;
+  }
+}
+  .cta-btn {
+    display: inline-block;
+    padding: 1rem 2.4rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 50px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(255,140,0,0.45);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
 
-        tr:nth-child(even) td {
-          background: #f8fafa;
-        }
+  .cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(255,140,0,0.6);
+  }
 
-        /* CAROUSEL  */
-        .applications-carousel {
-          max-width: 900px;
-          height: 520px;
-          margin: 0 auto;
-          position: relative;
-          overflow: hidden;
-          background: #fff;
-          border-radius: 20px;
-        }
+  /* ─── SECTION TITLES ─── */
+  .section {
+    margin-bottom: 5rem;
+    text-align: center;
+    padding: 0 1rem;
+  }
 
-        .carousel-track {
-          display: flex;
-          height: 100%;
-          transition: transform .6s cubic-bezier(.45,0,.55,1);
-        }
+  .section h2 {
+    font-size: clamp(2rem, 5vw, 2.6rem);
+    font-weight: 900;
+    color: var(--primary);
+    margin-bottom: 1.8rem;
+  }
 
-        .carousel-slide {
-          flex: 0 0 100%;
-          position: relative;
-        }
+  /* ─── TABLE ─── */
+  table {
+    width: 100%;
+    margin: 2rem auto;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.1);
+    font-size: 0.98rem;
+  }
 
-        .carousel-slide img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover; /* DESKTOP SAFE */
-          background: #fff;
-        }
+  th, td {
+    padding: 1.1rem 0.9rem;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+  }
 
-        .slide-overlay {
-          position: absolute;
-          bottom: 0;
-          inset-inline: 0;
-          padding: 3rem;
-          background: linear-gradient(transparent, rgba(0,0,0,.85));
-          color: white;
-          text-align: left;
-        }
+  th {
+    background: var(--primary);
+    color: white;
+    font-weight: 700;
+  }
 
-        .carousel-nav {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          background: rgba(0,0,0,.6);
-          color: white;
-          border: none;
-          padding: 1rem;
-          cursor: pointer;
-          z-index: 10;
-          font-size: 2rem;
-        }
+  tr:last-child td {
+    border-bottom: none;
+  }
 
-        .prev-btn { left: 15px; }
-        .next-btn { right: 15px; }
+  /* ─── CAROUSEL ─── */
+  .applications-carousel {
+    position: relative;
+    width: 100%;
+    height: 480px;
+    margin: 0 auto 2rem;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    background: white;
+  }
 
-        .carousel-dots {
-          position: absolute;
-          bottom: 15px;
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          gap: 10px;
-        }
+  .carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.65s cubic-bezier(0.45, 0, 0.55, 1);
+  }
 
-        .dot {
-          width: 12px;
-          height: 12px;
-          border-radius: 50%;
-          background: rgba(255,255,255,.5);
-          cursor: pointer;
-        }
+  .carousel-slide {
+    flex: 0 0 100%;
+    position: relative;
+  }
 
-        .dot.active {
-          background: white;
-        }
+  .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-        /* FINAL CTA */
-        .final-cta {
-          background: linear-gradient(135deg, var(--primary), #002b34);
-          border-radius: 32px;
-          padding: 5rem 4rem;
-          text-align: center;
-          color: white;
-          box-shadow: 0 25px 70px rgba(0,0,0,.35);
-          max-width: 1100px;
-          margin: 0 auto;
-        }
+  .slide-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2.5rem 2rem 2rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.55) 50%, transparent 100%);
+    color: white;
+  }
 
-        .final-cta h2 {
-          font-size: 3.2rem;
-          margin-bottom: 1.8rem;
-        }
+  .slide-overlay h3 {
+    margin: 0 0 0.8rem;
+    font-size: 1.65rem;
+  }
 
-        .final-cta p {
-          font-size: 1.35rem;
-          max-width: 900px;
-          margin: 0 auto 3rem;
-        }
+  .slide-overlay p {
+    margin: 0;
+    font-size: 1.05rem;
+    opacity: 0.95;
+  }
 
-        /* MOBILE: FULL WIDTH & COVER */
-        @media (max-width: 768px) {
-          .applications-carousel {
-            max-width: none;
-            width: 100vw;
-            height: 420px;
-            border-radius: 0;
-          }
+  .carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.55);
+    color: white;
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.25s;
+  }
 
-          .carousel-slide img {
-            object-fit: cover;
-          }
+  .carousel-nav:hover {
+    background: rgba(0,0,0,0.8);
+  }
 
-          .rebar-hero {
-            height: 520px;
-            border-radius: 0;
-          }
-        }
-      `}</style>
+  .prev-btn { left: 12px; }
+  .next-btn { right: 12px; }
 
+  .carousel-dots {
+    position: absolute;
+    bottom: 16px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 10;
+  }
+
+  .dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.45);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .dot.active {
+    background: white;
+    transform: scale(1.3);
+  }
+
+  /* ─── FINAL CTA ─── */
+  .final-cta {
+    background: linear-gradient(135deg, var(--primary), #002b34);
+    border-radius: 24px;
+    padding: 3.5rem 1.8rem;
+    margin: 0 1rem 3rem;
+    text-align: center;
+    color: white;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.3);
+  }
+
+  .final-cta h2 {
+    font-size: clamp(2.2rem, 6vw, 2.8rem);
+    margin-bottom: 1.4rem;
+  }
+
+  .final-cta p {
+    font-size: 1.15rem;
+    max-width: 700px;
+    margin: 0 auto 2.2rem;
+    line-height: 1.5;
+  }
+
+  /* ─── MOBILE ADJUSTMENTS ─── */
+  @media (max-width: 768px) {
+    .rebar-hero {
+      height: 65vh;
+      min-height: 380px;
+    }
+
+    .hero-overlay {
+      padding: 2.5rem 1.2rem 2rem;
+    }
+
+    .cta-btn {
+      padding: 0.9rem 2.2rem;
+      font-size: 1rem;
+    }
+
+    .applications-carousel {
+      height: 400px;
+      border-radius: 0;
+      margin-left: -1rem;
+      margin-right: -1rem;
+      width: auto;
+    }
+
+    .slide-overlay {
+      padding: 2rem 1.5rem 1.8rem;
+    }
+
+    .slide-overlay h3 {
+      font-size: 1.45rem;
+    }
+
+    .carousel-nav {
+      width: 42px;
+      height: 42px;
+      font-size: 1.6rem;
+    }
+
+    .prev-btn { left: 8px; }
+    .next-btn { right: 8px; }
+
+    table {
+      font-size: 0.92rem;
+    }
+
+    th, td {
+      padding: 0.9rem 0.6rem;
+    }
+
+    .final-cta {
+      padding: 3rem 1.5rem;
+      margin: 0 0.8rem 4rem;
+      border-radius: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .rebar-hero {
+      height: 55vh;
+      min-height: 340px;
+    }
+
+    .hero-overlay {
+      padding: 2rem 1rem 1.8rem;
+    }
+
+    .cta-btn {
+      padding: 0.85rem 2rem;
+      font-size: 0.98rem;
+    }
+
+    .applications-carousel {
+      height: 360px;
+    }
+
+    .final-cta {
+      padding: 2.8rem 1.2rem;
+    }
+  }
+`}</style>
       <section className="rebar-page">
         <div className="rebar-container">
 

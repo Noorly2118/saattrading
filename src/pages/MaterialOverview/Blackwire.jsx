@@ -100,72 +100,116 @@ const BlackWire = () => {
           line-height: 1.6;
         }
 
-        .section {
-          margin-bottom: 5rem;
-        }
+      .section {
+  margin-bottom: clamp(3rem, 8vw, 5rem);
+}
 
-        .section h2 {
-          font-size: 2.4rem;
-          font-weight: 800;
-          color: #003d4a;
-          margin-bottom: 2rem;
-          text-align: center;
-        }
+.section h2 {
+  font-size: clamp(1.8rem, 6vw, 2.4rem);
+  font-weight: 800;
+  color: #003d4a;
+  margin-bottom: clamp(1.2rem, 4vw, 2rem);
+  text-align: center;
+  line-height: 1.15;
+}
 
-        .grid-2 {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-          gap: 3rem;
-          align-items: center;
-        }
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.8rem, 5vw, 3rem);
+  align-items: center;
+  margin: 0 auto;
+}
 
-        .grid-2 img {
-          width: 100%;
-          box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-        }
+.grid-2 img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
 
-        .specs-table {
-          width: 100%;
-          border-collapse: collapse;
-          margin: 2rem 0;
-          background: #fff;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-          border-radius: 16px;
-          overflow: hidden;
-        }
+/* Table improvements – mobile first */
+.specs-table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  margin: clamp(1.5rem, 4vw, 2.5rem) 0;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: clamp(0.92rem, 3.2vw, 1rem);
+}
 
-        .specs-table th, .specs-table td {
-          padding: 1.2rem 1.5rem;
-          text-align: left;
-          border-bottom: 1px solid #eee;
-        }
+.specs-table th,
+.specs-table td {
+  padding: clamp(0.8rem, 3vw, 1.1rem) clamp(0.9rem, 3vw, 1.3rem);
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+}
 
-        .specs-table th {
-          background: #003d4a;
-          color: #fff;
-          font-weight: 700;
-        }
+.specs-table th {
+  background: #003d4a;
+  color: #fff;
+  font-weight: 700;
+}
 
-        .specs-table tr:last-child td {
-          border-bottom: none;
-        }
+.specs-table tr:last-child td {
+  border-bottom: none;
+}
 
-        .applications-list {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 1.5rem;
-          list-style: none;
-          padding: 0;
-        }
+/* Desktop / tablet – side-by-side layout */
+@media (min-width: 768px) {
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.8rem;
+    max-width: 1100px;
+    margin: 2.5rem auto;
+  }
 
-        .applications-list li {
-          background: #fff;
-          padding: 1.5rem;
-          border-radius: 12px;
-          box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-          font-size: 1.1rem;
-        }
+  .grid-2 img {
+    border-radius: 16px;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.11);
+  }
 
+  .specs-table {
+    font-size: 1rem;
+  }
+
+  .specs-table th,
+  .specs-table td {
+    padding: 1.2rem 1.4rem;
+  }
+}
+
+/* Applications list – already quite good, just minor tweaks */
+.applications-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.4rem;
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+.applications-list li {
+  background: #fff;
+  padding: clamp(1.2rem, 4vw, 1.6rem);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  font-size: clamp(0.98rem, 3.5vw, 1.1rem);
+  line-height: 1.55;
+}
+
+@media (min-width: 640px) {
+  .applications-list {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.8rem;
+  }
+}
         .final-cta {
           text-align: center;
           padding: 4rem 2rem;
