@@ -3,7 +3,7 @@ import staffahero from "../../assets/staffahero.jpg"
 
 import Staffainstalled from "../../assets/Staffa installed in rebar cage.jpg"
 import fabricated from "../../assets/fabrication.jpg"
-import shapes from "../../assets/different Shapes of Stirrups.jpg"
+import shapes from "../../assets/different-shapes-of-stirrups.jpg"
 import staffa from "../../assets/staffa.jpg"
 
 const Staffa = () => {
