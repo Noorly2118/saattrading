@@ -66,12 +66,13 @@ const Rebar = () => {
 .rebar-hero {
   position: relative;
   width: 110vw;                    
-  height: 100vh;                    
+  height: 110vh;                    
   min-height: 420px;
   max-height: 720px;
   margin-left: calc(-44vw + 50%); 
   margin-right: calc(-50vw + 50%);
   margin-bottom: 3.5rem;
+  margin-top:-3.3rem;
   overflow: hidden;
   left: 50%;
   transform: translateX(-50%);    
@@ -98,9 +99,10 @@ const Rebar = () => {
 /* Mobile adjustments – keep full bleed, but adjust height & padding */
 @media (max-width: 768px) {
   .rebar-hero {
-    height: 65vh;
-    min-height: 380px;
+    height: 50vh;
+    min-height: 350px;
     margin-bottom: 3rem;
+    margin-top:-3rem
   }
 
   .hero-overlay {
@@ -115,8 +117,8 @@ const Rebar = () => {
 
 @media (max-width: 480px) {
   .rebar-hero {
-    height: 60vh;
-    min-height: 340px;
+    height: 50vh;
+    min-height: 310px;
   }
 
   .hero-overlay {
@@ -135,7 +137,7 @@ const Rebar = () => {
     box-shadow: 0 8px 24px rgba(255,140,0,0.45);
     transition: all 0.3s ease;
     white-space: nowrap;
-  }
+    }
 
   .cta-btn:hover {
     transform: translateY(-3px);

@@ -76,7 +76,6 @@ const Footer = () => {
             <h5>Contact</h5>
             <p>Addis Ababa, Ethiopia</p>
             <p>📞 +251 952 277 474</p>
-             <p>📞 +251 952 287 676</p>
             <p>✉️ info@saattrading.com</p>
             <Link to="/request-quote" className="footer-cta">
               Request a Quote

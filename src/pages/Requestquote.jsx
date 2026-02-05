@@ -125,7 +125,8 @@ const RequestQuote = () => {
             .submit-btn { background: linear-gradient(135deg, #F28C28 0%, #ff9f00 100%); color: white; padding: 1.3rem 3.5rem; border: none; border-radius: 60px; font-weight: 800; font-size: 1.15rem; cursor: pointer; box-shadow: 0 12px 35px rgba(242, 140, 40, 0.4); transition: all 0.4s ease; margin-top: 2rem; display: flex; align-items: center; gap: 12px; }
             .submit-btn:hover:not(:disabled) { transform: translateY(-5px) scale(1.03); box-shadow: 0 20px 50px rgba(242, 140, 40, 0.5); }
             .submit-btn:disabled { opacity: 0.7; transform: none; cursor: not-allowed; }
-            .status-message { margin-top: 2rem; padding: 1.2rem 1.8rem; border-radius: 14px; font-weight: 700; text-align: center; display: flex; align-items: center; justify-content: center; gap: 12px; }
+            .form-trust-note { margin-top: 1.2rem; text-align: center; font-size: 0.9rem; color: #9AA6A6;}
+           .status-message { margin-top: 2rem; padding: 1.2rem 1.8rem; border-radius: 14px; font-weight: 700; text-align: center; display: flex; align-items: center; justify-content: center; gap: 12px; }
             .success { background: rgba(0, 180, 0, 0.12); color: #006400; border: 1px solid #008000; }
             .error { background: rgba(220, 53, 69, 0.12); color: #c0392b; border: 1px solid #dc3545; }
             .trust-note { text-align: center; color: #9AA6A6; font-size: 0.95rem; margin-top: 4rem; }
@@ -148,7 +149,7 @@ const RequestQuote = () => {
               <ul className="benefits">
                 <li><CheckCircle size={26} /> Competitive bulk pricing</li>
                 <li><CheckCircle size={26} /> Response within hours</li>
-                <li><CheckCircle size={26} /> Nationwide delivery coordination</li>
+                <li><CheckCircle size={26} /> Citywide delivery coordination</li>
                 <li><CheckCircle size={26} /> Expert material consultation</li>
               </ul>
             </div>
@@ -201,14 +202,9 @@ const RequestQuote = () => {
                       value={form.materials}
                       onChange={handleChange}
                       placeholder={`Example format:
-
-A) Total Sum of Sub & Super Structures
 1) dia 6mm bar = 7245kg
-2) dia 8mm bar = 271kg   (59 berga)
-3) dia 10mm bar = 2700kg   (356 berga)
-4) dia 12mm bar = 11545kg   (1085 berga)
-5) dia 14mm bar = 480kg   (34 berga)
-6) dia 16mm bar = 170kg   (11 berga)
+2) dia 8mm bar = 59 berga
+3) dia 10mm bar = 356 berga
 7) 1.5mm black wire = 150kg
 8) 2.5mm black wire = 150kg
 9) Nails 5mm-12mm = 150 packets`}
@@ -237,6 +233,9 @@ A) Total Sum of Sub & Super Structures
                     </div>
                   </div>
                 </div>
+<p className="form-trust-note">
+  🔒 Your information is secure and used only for providing accurate quotes.
+</p>
 
                 <button type="submit" className="submit-btn" disabled={status === "sending"}>
                   {status === "sending" ? (
@@ -263,9 +262,7 @@ A) Total Sum of Sub & Super Structures
             </div>
           </div>
 
-          <p className="trust-note">
-            Your information is secure and used only for providing accurate quotes.
-          </p>
+          
         </div>
       </section>
     </>

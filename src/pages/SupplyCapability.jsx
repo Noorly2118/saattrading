@@ -256,7 +256,7 @@ const SupplyCapability = () => {
           {/* MATERIAL SCOPE */}
           <div className="scope">
             <ul>
-              <li>Reinforcement Steel (Rebar)</li>
+              <li>Reinforcement Bar (Rebar)</li>
               <li>Black Annealed Binding Wire</li>
               <li>Nails </li>
               <li>Staffa </li>

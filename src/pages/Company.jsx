@@ -252,17 +252,7 @@ const Company = () => {
             </div>
           </div>
 
-          {/* CTA */}
-          <div className="company-cta">
-            <h2>Build With a Trusted Partner</h2>
-            <p>
-              Whether you are planning a residential development, commercial project,
-              or large-scale infrastructure work, SAAT Trading PLC is ready to support
-              your material supply needs.
-            </p>
-            <Link to="/request-quote">Request a Quote</Link>
-          </div>
-
+       
 {/* COMPANY PROFILE DOWNLOAD */}
 <div className="company-section">
   <h2>Official Company Profile</h2>
@@ -314,7 +304,18 @@ const Company = () => {
   </div>
 </div>
 
-        </div>
+    
+       {/* CTA */}
+          <div className="company-cta">
+            <h2>Build With a Trusted Partner</h2>
+            <p>
+              Whether you are planning a residential development, commercial project,
+              or large-scale infrastructure work, SAAT Trading PLC is ready to support
+              your material supply needs.
+            </p>
+            <Link to="/request-quote">Request a Quote</Link>
+          </div>
+    </div>
       </section>
     </>
   );
